@@ -4,13 +4,13 @@ env_vars = {
   # Get From my.telegram.org
   "API_ID": "28585290",
   #Get For @BotFather
-  "BOT_TOKEN": "7366951774:AAHxHivITripwA4HbO76IZg4AKyxe50Wx68",
+  "BOT_TOKEN": "7366951774:7366951774:AAGcGkpPdmsyjgPSujyn5l7RMGguvYwGDJw",
   # Get For tembo.io
   "DATABASE_URL_PRIMARY": "postgresql://postgres:PqlMxuIq3i9sDvvr@quizzically-moving-weimaraner.data-1.use1.tembo.io:5432/postgres",
   # Logs Channel Username Without @
-  "CACHE_CHANNEL": "-1002164639662",
+  "CACHE_CHANNEL": "crystalxmanga_logs",
   # Force Subs Channel username without @
-  "CHANNEL": "-1002238513078",
+  "CHANNEL": "crystalbotdevelopment",
   # {chap_num}: Chapter Number
   # {chap_name} : Manga Name
   # Ex : Chapter {chap_num} {chap_name} @crystalxmanga_bot
