@@ -11,6 +11,10 @@ class FlamesComicClient(MangaClient):
     search_param = 's'
     updates_url = base_url.geturl()
 
+    pre_headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:97.0) Gecko/20100101 Firefox/97.0'
+    }
+
     def mangas_from_page(self, page: bytes):
         bs = BeautifulSoup(page, "html.parser")
 
