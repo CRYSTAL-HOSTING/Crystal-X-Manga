@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 from plugins.client import MangaClient, MangaCard, MangaChapter, LastChapter
 
 class FlamesComicClient(MangaClient):
-    base_url = urlparse("https://flamescomics.xyz/")
+    base_url = urlparse("https://flamecomics.xyz/")
     search_url = urljoin(base_url.geturl(), "search")
     updates_url = base_url.geturl()
 
@@ -15,14 +15,14 @@ class FlamesComicClient(MangaClient):
     }
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, name="FlamesComic", headers=self.pre_headers, **kwargs)
+        super().__init__(*args, name="FlameComics", headers=self.pre_headers, **kwargs)
 
     def mangas_from_page(self, page: bytes):
         bs = BeautifulSoup(page, "html.parser")
 
-        containers = bs.find_all("div", {"class": "bsx"})
+        containers = bs.find_all("div", {"class": "manga-card"})
 
-        names = [container.find("div", {"class": "tt"}).text.strip() for container in containers]
+        names = [container.find("h3", {"class": "manga-title"}).text.strip() for container in containers]
         urls = [container.find("a").get("href") for container in containers]
         images = [container.find("img").get("src") for container in containers]
 
@@ -33,17 +33,17 @@ class FlamesComicClient(MangaClient):
     def chapters_from_page(self, page: bytes, manga: MangaCard = None):
         bs = BeautifulSoup(page, "html.parser")
 
-        chapters = bs.find("div", {"id": "chapterlist"}).find_all("li")
+        chapters = bs.find("ul", {"class": "chapter-list"}).find_all("li")
 
         links = [chapter.find("a").get("href") for chapter in chapters]
-        texts = [chapter.find("span", {"class": "chapternum"}).text.strip() for chapter in chapters]
+        texts = [chapter.find("span", {"class": "chapter-number"}).text.strip() for chapter in chapters]
 
         return list(map(lambda x: MangaChapter(self, x[0], x[1], manga, []), zip(texts, links)))
 
     async def pictures_from_chapters(self, content: bytes, response=None):
         bs = BeautifulSoup(content, "html.parser")
 
-        container = bs.find("div", {"id": "readerarea"})
+        container = bs.find("div", {"class": "reading-content"})
 
         images_url = [quote(img.get("src"), safe=':/%') for img in container.find_all("img") if img.get("src")]
 
@@ -52,7 +52,7 @@ class FlamesComicClient(MangaClient):
     def updates_from_page(self, page: bytes):
         bs = BeautifulSoup(page, "html.parser")
 
-        manga_items = bs.find_all("div", {"class": "bsx"})
+        manga_items = bs.find_all("div", {"class": "manga-card"})
 
         urls = dict()
 
@@ -62,7 +62,7 @@ class FlamesComicClient(MangaClient):
             if manga_url in urls:
                 continue
 
-            chapter_url = manga_item.find("div", {"class": "epxs"}).find("a").get("href")
+            chapter_url = manga_item.find("div", {"class": "latest-chapter"}).find("a").get("href")
 
             urls[manga_url] = chapter_url
 
@@ -71,7 +71,7 @@ class FlamesComicClient(MangaClient):
     async def search(self, query: str = "", page: int = 1) -> List[MangaCard]:
         query = quote_plus(query)
 
-        request_url = f"{self.search_url}?s={query}&post_type=wp-manga"
+        request_url = f"{self.search_url}?q={query}&page={page}"
 
         content = await self.get_url(request_url)
 
@@ -82,7 +82,7 @@ class FlamesComicClient(MangaClient):
 
         content = await self.get_url(request_url)
 
-        return self.chapters_from_page(content, manga_card)[(page - 1 ) * 20:page * 20]
+        return self.chapters_from_page(content, manga_card)[(page - 1) * 20 :page * 20]
 
     async def iter_chapters(self, manga_url: str, manga_name) -> AsyncIterable[MangaChapter]:
         manga_card = MangaCard(self, manga_name, manga_url, '')
