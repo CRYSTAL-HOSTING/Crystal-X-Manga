@@ -82,9 +82,9 @@ class FlamesComicClient(MangaClient):
 
         content = await self.get_url(request_url)
 
-        return self.chapters_from_page(content, manga_card)[(page - 1) * 20:page * 20]
+        return self.chapters_from_page(content, manga_card)[(page - 1 ) * 20:page * 20]
 
-     async def iter_chapters(self, manga_url: str, manga_name) -> AsyncIterable[MangaChapter]:
+    async def iter_chapters(self, manga_url: str, manga_name) -> AsyncIterable[MangaChapter]:
         manga_card = MangaCard(self, manga_name, manga_url, '')
 
         request_url = f'{manga_card.url}'
@@ -98,17 +98,11 @@ class FlamesComicClient(MangaClient):
         return url.startswith(self.base_url.geturl())
 
     async def check_updated_urls(self, last_chapters: List[LastChapter]):
-        page = await self.get_url(self.updates_url)
-        
-        updates = await self.updates_from_page(page)
-        
-        updated = []
-        not_updated = []
-        for lc in last_chapters:
-            if lc.url in updates.keys():
-                if updates.get(lc.url) != lc.chapter_url:
-                    updated.append(lc.url)
-                elif updates.get(lc.url) == lc.chapter_url:
-                    not_updated.append(lc.url)
-                
+        content = await self.get_url(self.updates_url)
+
+        updates = self.updates_from_page(content)
+
+        updated = [lc.url for lc in last_chapters if updates.get(lc.url) and updates.get(lc.url) != lc.chapter_url]
+        not_updated = [lc.url for lc in last_chapters if not updates.get(lc.url) or updates.get(lc.url) == lc.chapter_url]
+
         return updated, not_updated
