@@ -46,14 +46,14 @@ plugin_dicts: Dict[str, Dict[str, MangaClient]] = {
         "Manganelo": ManganeloClient(),
         "Manganato": ManganatoClient(),
         "MangaSee":  MangaSeeClient(),
-        "MangasIn": MangasInClient()
+        "MangasIn": MangasInClient(),
         "MangaBuddy": MangaBuddyClient(),
         "TMO": TMOClient(),
         "Mangatigre": MangatigreClient(),
+        "FlameComics": FlamesComicClient(),
         "AsuraScans": AsuraScansClient(),
         "NineManga": NineMangaClient(),        
-        "LikeManga": LikeMangaClient(),
-        "FlameComics": FlamesComicClient()
+        "LikeManga": LikeMangaClient()
           },
     "🔞 18+": {
         "Manga18fx": Manga18fxClient(),
