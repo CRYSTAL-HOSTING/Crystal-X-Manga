@@ -1,3 +1,10 @@
+from typing import List, AsyncIterable
+from urllib.parse import urlparse, urljoin, quote, quote_plus
+
+from bs4 import BeautifulSoup
+
+from plugins.client import MangaClient, MangaCard, MangaChapter, LastChapter
+
 class FlamesComicClient(MangaClient):
     base_url = urlparse("https://flamescomic.org/")
     search_url = base_url.geturl()
