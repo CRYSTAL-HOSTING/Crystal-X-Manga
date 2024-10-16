@@ -41,23 +41,20 @@ plugin_dicts: Dict[str, Dict[str, MangaClient]] = {
     "🇬🇧 EN": {
         "MangaDex": MangaDexClient(),
         "Mgeko": MgekoClient(),
+        "ManhuaKo": ManhuaKoClient(),
         "MagaKakalot": MangaKakalotClient(),
         "Manganelo": ManganeloClient(),
         "Manganato": ManganatoClient(),
         "MangaSee":  MangaSeeClient(),
+        "MangasIn": MangasInClient()
         "MangaBuddy": MangaBuddyClient(),
+        "TMO": TMOClient(),
+        "Mangatigre": MangatigreClient(),
         "AsuraScans": AsuraScansClient(),
         "NineManga": NineMangaClient(),        
         "LikeManga": LikeMangaClient(),
+        
           },
-    "🇪🇸 ES": {
-        "MangaDex": MangaDexClient(language=("es-la", "es")),
-        "ManhuaKo": ManhuaKoClient(),
-        "TMO": TMOClient(),
-        "Mangatigre": MangatigreClient(),
-        "NineManga": NineMangaClient(language='es'),
-        "MangasIn": MangasInClient(),
-    },
     "🔞 18+": {
         "Manga18fx": Manga18fxClient(),
         "MangaDistrict": MangaDistrictClient(),
@@ -85,7 +82,7 @@ class OutputOptions(enum.IntEnum):
         return self.value | other
 
 
-#disabled = ["[🇬🇧 EN] McReader", "[🇬🇧 EN] Manhuaplus", "[🇪🇸 ES] MangasIn", "[🇪🇸 ES] Likemanga"]
+
 disabled = []
 
 plugins = dict()
