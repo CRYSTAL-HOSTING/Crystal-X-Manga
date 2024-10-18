@@ -17,29 +17,57 @@ env_vars = {
   "FNAME": "Chapter {chap_num} | {chap_name}  @crystalxmanga_bot",
   # Put Thumb Link 
   "THUMB": "",
-  "WELCOME_MESSAGE": (
-        "<b>Welcome to the best manga pdf bot in Telegram!</b>\n"
-        "\n"
-        "How to use? Just type the name of some manga you want to keep up to date.\n"
-        "\n"
-        "For example:\n"
-        "<code>One Piece</code>\n"
-        "\n"
-        "Check /help for more information.\n"
-        "\n"
-        "<i>Features:</i>\n"
-        "• <u>Fast downloads</u>\n"
-        "• <u>High-quality PDFs</u>\n"
-        "• <u>Regular updates</u>\n"
-        "\n"
-        "Join our channel for <a href='{updates_url}'>latest updates</a>!\n"
-        "\n"
-        "<b>Enjoy reading your favorite manga!</b> 📚🎉"
-    ),
+  # Welcome Command Message
+  "START_MESSAGE": """
+🎉 *Welcome to CrystalX Manga Bot!*
+
+This bot helps you find and download manga chapters easily.
+
+📚 *How to use:*
+Just type the name of a manga you want to read. For example:
+`One Piece`
+
+✨ *Main features:*
+• Search and download manga chapters
+• Get chapters in PDF or CBZ format
+• Subscribe to manga for updates
+
+ℹ️ Use /help to see all available commands and more detailed instructions.
+
+📢 Join @crystalbotdevelopment for bot updates.
+
+Happy reading! 📖
+""",
   "UPDATES_URL": "https://t.me/crystalbotdevelopment",
   "REPO_URL": "https://github.com/",
   # Replace with your actual image URL
   "WELCOME_IMAGE_URL": ""
+# Help Command Message
+  "HELP_MESSAGE": """
+📚 *CrystalX Manga Bot Help*
+
+Here are the main commands and features:
+
+🔍 *Search:* Simply type a manga name
+Example: `One Piece`
+
+📥 *Download:* Click on a chapter to download
+
+📋 *Commands:*
+/start - Start the bot
+/help - Show this help message
+/subs - List your subscriptions
+/cancel - Cancel a subscription
+
+⚙️ *Options:*
+/options - Set your preferred output format (PDF/CBZ)
+
+💡 *Tips:*
+• Use precise manga names for better results
+• Subscribe to manga to get notified of new chapters
+
+For more help or to report issues, contact @YourSupportUsername
+"""
 }
 
 dbname = env_vars.get('DATABASE_URL_PRIMARY') or env_vars.get('DATABASE_URL') or 'sqlite:///test.db'
