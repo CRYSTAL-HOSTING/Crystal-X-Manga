@@ -163,16 +163,39 @@ async def on_private_message(client: Client, message: Message):
 @bot.on_message(filters=filters.command(['start']))
 async def on_start(client: Client, message: Message):
     logger.info(f"User {message.from_user.id} started the bot")
-    await message.reply("Welcome to the best manga pdf bot in telegram!!\n"
-                        "\n"
-                        "How to use? Just type the name of some manga you want to keep up to date.\n"
-                        "\n"
-                        "For example:\n"
-                        "`One Piece`\n"
-                        "\n"
-                        "Check /help for more information.")
-    logger.info(f"User {message.from_user.id} finished the start command")
     
+    # Fetch values from config
+    welcome_image = env_vars.get("WELCOME_IMAGE_URL")
+    updates_url = env_vars.get("UPDATES_URL")
+    repo_url = env_vars.get("REPO_URL")
+    
+    # Format the welcome message with the updates URL
+    caption = env_vars.get("WELCOME_MESSAGE").format(updates_url=updates_url)
+
+    # Create the inline keyboard with two URL buttons
+    keyboard = InlineKeyboardMarkup([
+        [InlineKeyboardButton("Updates", url=updates_url)],
+        [InlineKeyboardButton("Repo", url=repo_url)]
+    ])
+
+    if welcome_image:
+        # Send the image with the caption and the inline keyboard
+        await message.reply_photo(
+            photo=welcome_image,
+            caption=caption,
+            reply_markup=keyboard,
+            parse_mode="html"
+        )
+    else:
+        # Fallback to text-only message with the inline keyboard if no image URL is provided
+        await message.reply(
+            caption,
+            reply_markup=keyboard,
+            parse_mode="html"
+        )
+    
+    logger.info(f"User {message.from_user.id} finished the start command")
+
 
 @bot.on_message(filters=filters.command(['help']))
 async def on_help(client: Client, message: Message):
