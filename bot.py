@@ -184,14 +184,14 @@ async def on_start(client: Client, message: Message):
             photo=welcome_image,
             caption=caption,
             reply_markup=keyboard,
-            parse_mode="MarkdownV2"
+            parse_mode="Markdown"
         )
     else:
         # Fallback to text-only message with the inline keyboard if no image URL is provided
         await message.reply(
             caption,
             reply_markup=keyboard,
-            parse_mode="MarkdownV2"
+            parse_mode="Markdown"
         )
     
     logger.info(f"User {message.from_user.id} finished the start command")
