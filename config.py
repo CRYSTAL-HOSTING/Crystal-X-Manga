@@ -41,8 +41,7 @@ Happy reading! 📖
   "UPDATES_URL": "https://t.me/crystalbotdevelopment",
   "REPO_URL": "https://github.com/",
   # Replace with your actual image URL
-  "WELCOME_IMAGE_URL": ""
-# Help Command Message
+  "WELCOME_IMAGE_URL": "",
   "HELP_MESSAGE": """
 📚 *CrystalX Manga Bot Help*
 
@@ -67,7 +66,7 @@ Example: `One Piece`
 • Subscribe to manga to get notified of new chapters
 
 For more help or to report issues, contact @YourSupportUsername
-"""
+""",
 }
 
 dbname = env_vars.get('DATABASE_URL_PRIMARY') or env_vars.get('DATABASE_URL') or 'sqlite:///test.db'
