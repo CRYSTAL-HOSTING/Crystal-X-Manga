@@ -170,7 +170,7 @@ async def on_start(client: Client, message: Message):
     repo_url = env_vars.get("REPO_URL")
     
     # Format the welcome message with the updates URL
-    caption = env_vars.get("WELCOME_MESSAGE").format(updates_url=updates_url)
+    caption = env_vars.get("WELCOME_MESSAGE")
 
     # Create the inline keyboard with two URL buttons
     keyboard = InlineKeyboardMarkup([
