@@ -16,7 +16,30 @@ env_vars = {
   # Ex : Chapter {chap_num} {chap_name} @crystalxmanga_bot
   "FNAME": "Chapter {chap_num} | {chap_name}  @crystalxmanga_bot",
   # Put Thumb Link 
-  "THUMB": ""
+  "THUMB": "",
+  "WELCOME_MESSAGE": (
+        "<b>Welcome to the best manga pdf bot in Telegram!</b>\n"
+        "\n"
+        "How to use? Just type the name of some manga you want to keep up to date.\n"
+        "\n"
+        "For example:\n"
+        "<code>One Piece</code>\n"
+        "\n"
+        "Check /help for more information.\n"
+        "\n"
+        "<i>Features:</i>\n"
+        "• <u>Fast downloads</u>\n"
+        "• <u>High-quality PDFs</u>\n"
+        "• <u>Regular updates</u>\n"
+        "\n"
+        "Join our channel for <a href='{updates_url}'>latest updates</a>!\n"
+        "\n"
+        "<b>Enjoy reading your favorite manga!</b> 📚🎉"
+    ),
+  "UPDATES_URL": "https://t.me/crystalbotdevelopment",
+  "REPO_URL": "https://github.com/",
+  # Replace with your actual image URL
+  "WELCOME_IMAGE_URL": ""
 }
 
 dbname = env_vars.get('DATABASE_URL_PRIMARY') or env_vars.get('DATABASE_URL') or 'sqlite:///test.db'
