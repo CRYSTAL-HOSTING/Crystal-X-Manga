@@ -182,7 +182,7 @@ async def on_start(client: Client, message: Message):
         # Send the image with the caption and the inline keyboard
         await message.reply_photo(
             photo=welcome_image,
-            caption=caption,
+            caption=START_MESSAGE,
             has_spoiler=True,
             reply_markup=keyboard
         )
