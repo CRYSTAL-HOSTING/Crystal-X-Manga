@@ -17,4 +17,4 @@ from .likemanga import LikeMangaClient
 from .mangasee import MangaSeeClient
 from .mangadistrict import MangaDistrictClient
 from .manga18fx import Manga18fxClient
-from .flamecomics import FlamesComicsClient
+from .flamecomics import FlameComicsClient
