@@ -189,7 +189,7 @@ async def on_start(client: Client, message: Message):
     else:
         # Fallback to text-only message with the inline keyboard if no image URL is provided
         await message.reply(
-            caption,
+            caption=welcome_message,
             reply_markup=keyboard
         )
     
