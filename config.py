@@ -18,26 +18,24 @@ env_vars = {
   # Put Thumb Link 
   "THUMB": "",
   # Welcome Command Message
-  "START_MESSAGE": """
-🎉 *Welcome to CrystalX Manga Bot!*
-
-This bot helps you find and download manga chapters easily.
-
-📚 *How to use:*
-Just type the name of a manga you want to read. For example:
-`One Piece`
-
-✨ *Main features:*
-• Search and download manga chapters
-• Get chapters in PDF or CBZ format
-• Subscribe to manga for updates
-
-ℹ️ Use /help to see all available commands and more detailed instructions.
-
-📢 Join @crystalbotdevelopment for bot updates.
-
-Happy reading! 📖
-""",
+  "START_MESSAGE": "🎉 Welcome to CrystalX Manga Bot!\n"
+"\n"
+"This bot helps you find and download manga chapters easily.\n"
+"\n"
+"📚 How to use:"
+"Just type the name of a manga you want to read. For example:\n"
+"<code>One Piece</code>"
+"\n"
+"✨ Main features:\n"
+"• Search and download manga chapters.\n"
+"• Get chapters in PDF or CBZ format.\n"
+"• Subscribe to manga for updates.\n"
+"\n"
+"ℹ️ Use /help to see all available commands and more detailed instructions.\n"
+"\n"
+"📢 Join @crystalbotdevelopment for bot updates.\n"
+"\n"
+"Happy reading! 📖",
   "UPDATES_URL": "https://t.me/crystalbotdevelopment",
   "REPO_URL": "https://github.com/",
   # Replace with your actual image URL
