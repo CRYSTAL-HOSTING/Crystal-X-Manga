@@ -170,7 +170,7 @@ async def on_start(client: Client, message: Message):
     repo_url = env_vars.get("REPO_URL")
     
     # Format the welcome message with the updates URL
-    caption = env_vars.get("WELCOME_MESSAGE")
+    welcome_message = env_vars.get("START_MESSAGE")
 
     # Create the inline keyboard with two URL buttons
     keyboard = InlineKeyboardMarkup([
@@ -182,7 +182,7 @@ async def on_start(client: Client, message: Message):
         # Send the image with the caption and the inline keyboard
         await message.reply_photo(
             photo=welcome_image,
-            caption=START_MESSAGE,
+            caption=welcome_message,
             has_spoiler=True,
             reply_markup=keyboard
         )
