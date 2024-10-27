@@ -170,26 +170,26 @@ async def on_start(client: Client, message: Message):
     repo_url = env_vars.get("REPO_URL")
     
     # Format the welcome message with the updates URL
-    welcome_message = env_vars.get("START_MESSAGE")
+    caption = env_vars.get("START_MESSAGE")
 
     # Create the inline keyboard with two URL buttons
     keyboard = InlineKeyboardMarkup([
-        [InlineKeyboardButton("Updates", url=updates_url)],
-        [InlineKeyboardButton("Repo", url=repo_url)]
+        [InlineKeyboardButton("📣 UPDATES", url=updates_url)],
+        [InlineKeyboardButton("🗃️ REPO", url=repo_url)]
     ])
 
     if welcome_image:
         # Send the image with the caption and the inline keyboard
         await message.reply_photo(
             photo=welcome_image,
-            caption=welcome_message,
+            caption=caption,
             has_spoiler=True,
             reply_markup=keyboard
         )
     else:
         # Fallback to text-only message with the inline keyboard if no image URL is provided
         await message.reply(
-            caption=welcome_message,
+            caption,
             reply_markup=keyboard
         )
     
