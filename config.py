@@ -1,31 +1,40 @@
 env_vars = {
   # Get From my.telegram.org
   "API_HASH": "7e250aaf4f19530d1debaebace4454bc",
+
   # Get From my.telegram.org
   "API_ID": "28585290",
+
   #Get For @BotFather
   "BOT_TOKEN": "7366951774:AAGw1QMwF8CXFAMnJxY5nh_G-sG9qeMBOEo",
+
   # Get For tembo.io
   "DATABASE_URL_PRIMARY": "postgresql://postgres:X0v6RMf715n1yNLO@currently-joyous-scup.data-1.use1.tembo.io:5432/postgres",
+
   # Logs Channel Username Without @
   "CACHE_CHANNEL": "crystalxmanga_logs",
+
   # Force Subs Channel username without @
   "CHANNEL": "crystalbotdevelopment",
+
   # {chap_num}: Chapter Number
   # {chap_name} : Manga Name
   # Ex : Chapter {chap_num} {chap_name} @crystalxmanga_bot
-  "FNAME": "Chapter {chap_num} | {chap_name}  @crystalxmanga_bot",
+  "FNAME": "CH {chap_num} | {chap_name}",
+
   # Put Thumb Link 
   "THUMB": "",
+
   # Welcome Command Message
   "START_MESSAGE": "<b>🎉 Welcome to Crystal X Manga Bot!\n</b>"
 "\n"
 "<code>This bot helps you find and download manga chapters easily.</code>\n"
 "\n"
 "<b><u>📚 How to use</u>:\n</b>"
+"\n"
 "<code>Just type the name of a manga you want to read. For example:</code>\n"
 "\n"
-"<code>One Piece</code>"
+"<code>Solo Leveling: Ragnarok</code>\n"
 "\n"
 "<b><u>✨ Main Features</u> :\n</b>"
 "\n"
@@ -38,10 +47,14 @@ env_vars = {
 "📢 Join @crystalbotdevelopment for bot updates.\n"
 "\n"
 "<b>Happy reading! 📖</b>",
+
   "UPDATES_URL": "https://t.me/crystalbotdevelopment",
+
   "REPO_URL": "https://github.com/",
+
   # Replace with your actual image URL
   "WELCOME_IMAGE_URL": "https://t.me/Crystal_Manhwa/3",
+
   "HELP_MESSAGE": """
 📚 *CrystalX Manga Bot Help*
 
