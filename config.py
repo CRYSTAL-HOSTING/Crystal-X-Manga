@@ -18,28 +18,30 @@ env_vars = {
   # Put Thumb Link 
   "THUMB": "",
   # Welcome Command Message
-  "START_MESSAGE": "🎉 Welcome to CrystalX Manga Bot!\n"
+  "START_MESSAGE": "<b>🎉 Welcome to Crystal X Manga Bot!\n</b>"
 "\n"
-"This bot helps you find and download manga chapters easily.\n"
+"<code>This bot helps you find and download manga chapters easily.</code>\n"
 "\n"
-"📚 How to use:"
-"Just type the name of a manga you want to read. For example:\n"
+"<b><u>📚 How to use</u>:\n</b>"
+"<code>Just type the name of a manga you want to read. For example:</code>\n"
+"\n"
 "<code>One Piece</code>"
 "\n"
-"✨ Main features:\n"
-"• Search and download manga chapters.\n"
-"• Get chapters in PDF or CBZ format.\n"
-"• Subscribe to manga for updates.\n"
+"<b><u>✨ Main Features</u> :\n</b>"
+"\n"
+"• <code>Search and Download Manga Chapters.</code>\n"
+"• <code>Get chapters in PDF or CBZ format.</code>\n"
+"• <code>Subscribe To manga For Direct Updates.</code>\n"
 "\n"
 "ℹ️ Use /help to see all available commands and more detailed instructions.\n"
 "\n"
 "📢 Join @crystalbotdevelopment for bot updates.\n"
 "\n"
-"Happy reading! 📖",
+"<b>Happy reading! 📖</b>",
   "UPDATES_URL": "https://t.me/crystalbotdevelopment",
   "REPO_URL": "https://github.com/",
   # Replace with your actual image URL
-  "WELCOME_IMAGE_URL": "",
+  "WELCOME_IMAGE_URL": "https://t.me/Crystal_Manhwa/3",
   "HELP_MESSAGE": """
 📚 *CrystalX Manga Bot Help*
 
