@@ -12,9 +12,10 @@ from .mangatigre import MangatigreClient
 from .mangahasu import MangaHasuClient
 from .mangabuddy import MangaBuddyClient
 from .asurascans import AsuraScansClient
+from .flamecomics import FlameComicsClient
 from .ninemanga import NineMangaClient
 from .likemanga import LikeMangaClient
 from .mangasee import MangaSeeClient
 from .mangadistrict import MangaDistrictClient
 from .manga18fx import Manga18fxClient
-from .flamecomics import FlameComicsClient
+from .omegascans import OmegaScansClient
