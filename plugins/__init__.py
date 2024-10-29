@@ -11,7 +11,7 @@ from .mangahasu import MangaHasuClient
 from .mangabuddy import MangaBuddyClient
 from .asurascans import AsuraScansClient
 from .flamecomics import FlameComicsClient
-from .comick import ComicClient
+from .comick import ComickClient
 from .ninemanga import NineMangaClient
 from .likemanga import LikeMangaClient
 from .mangasee import MangaSeeClient
