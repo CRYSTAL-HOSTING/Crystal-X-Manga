@@ -38,7 +38,10 @@ users_in_channel: Dict[int, dt.datetime] = dict()
 locks: Dict[int, asyncio.Lock] = dict()
 
 plugin_dicts: Dict[str, Dict[str, MangaClient]] = {
-    "🇬🇧 EN": {
+    "😇 SFW": {
+        "AsuraScans": AsuraScansClient(),
+        "FlameComics": FlameComicsClient(),
+        "Comick" : ComickClient(),
         "MangaDex": MangaDexClient(),
         "Mgeko": MgekoClient(),
         "ManhuaKo": ManhuaKoClient(),
@@ -48,17 +51,15 @@ plugin_dicts: Dict[str, Dict[str, MangaClient]] = {
         "MangaSee":  MangaSeeClient(),
         "MangasIn": MangasInClient(),
         "MangaBuddy": MangaBuddyClient(),
-        "TMO": TMOClient(),
         "Mangatigre": MangatigreClient(),
-        "FlameComics": FlameComicsClient(),
-        "AsuraScans": AsuraScansClient(),
-        "NineManga": NineMangaClient(),        
-        "LikeManga": LikeMangaClient()
+        "NineManga": NineMangaClient(),
+        "LikeManga": LikeMangaClient(),
+        "TMO": TMOClient()
           },
-    "🔞 18+": {
-        "Manga18fx": Manga18fxClient(),
+    "🔞 NSFW": {
+        "OmegaScans": OmegaScansClient(),
         "MangaDistrict": MangaDistrictClient(),
-        "OmegaScans": OmegaScansClient()
+        "Manga18fx": Manga18fxClient()
     }
 }
 
@@ -149,9 +150,9 @@ async def on_private_message(client: Client, message: Message):
         logger.debug("Bot is not admin of the channel, therefore bot will continue to operate normally")
         return message.continue_propagation()
     except pyrogram.errors.UserNotParticipant:
-        await message.reply("In order to use the bot you must join it's update channel.",
+        await message.reply("In Order To Use The Bot You Must Join It's Update Channel 🛠️",
                             reply_markup=InlineKeyboardMarkup(
-                                [[InlineKeyboardButton('Join!', url=f't.me/{channel}')]]
+                                [[InlineKeyboardButton('Click Here To Join 🔗', url=f't.me/{channel}')]]
                             ))
     except pyrogram.ContinuePropagation:
         raise
@@ -165,22 +166,19 @@ async def on_private_message(client: Client, message: Message):
 async def on_start(client: Client, message: Message):
     logger.info(f"User {message.from_user.id} started the bot")
     
-    # Fetch values from config
     welcome_image = env_vars.get("WELCOME_IMAGE_URL")
+
     updates_url = env_vars.get("UPDATES_URL")
     repo_url = env_vars.get("REPO_URL")
     
-    # Format the welcome message with the updates URL
     caption = env_vars.get("START_MESSAGE")
 
-    # Create the inline keyboard with two URL buttons
     keyboard = InlineKeyboardMarkup([
         [InlineKeyboardButton("📣 UPDATES", url=updates_url)],
         [InlineKeyboardButton("🗃️ REPO", url=repo_url)]
     ])
 
     if welcome_image:
-        # Send the image with the caption and the inline keyboard
         await message.reply_photo(
             photo=welcome_image,
             caption=caption,
@@ -188,7 +186,6 @@ async def on_start(client: Client, message: Message):
             reply_markup=keyboard
         )
     else:
-        # Fallback to text-only message with the inline keyboard if no image URL is provided
         await message.reply(
             caption,
             reply_markup=keyboard
