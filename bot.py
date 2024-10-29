@@ -50,7 +50,6 @@ plugin_dicts: Dict[str, Dict[str, MangaClient]] = {
         "MangaSee":  MangaSeeClient(),
         "MangasIn": MangasInClient(),
         "MangaBuddy": MangaBuddyClient(),
-        "Mangatigre": MangatigreClient(),
         "NineManga": NineMangaClient(),
         "LikeManga": LikeMangaClient(),
         "TMO": TMOClient()
