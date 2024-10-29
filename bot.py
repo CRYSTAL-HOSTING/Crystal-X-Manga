@@ -44,7 +44,6 @@ plugin_dicts: Dict[str, Dict[str, MangaClient]] = {
         "Comick" : ComickClient(),
         "MangaDex": MangaDexClient(),
         "Mgeko": MgekoClient(),
-        "ManhuaKo": ManhuaKoClient(),
         "MagaKakalot": MangaKakalotClient(),
         "Manganelo": ManganeloClient(),
         "Manganato": ManganatoClient(),
