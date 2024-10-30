@@ -1,8 +1,6 @@
 from typing import List, AsyncIterable
 from urllib.parse import urlparse, urljoin, quote, quote_plus
-
 from bs4 import BeautifulSoup
-
 from plugins.client import MangaClient, MangaCard, MangaChapter, LastChapter
 
 
@@ -13,7 +11,7 @@ class OmegaScansClient(MangaClient):
     updates_url = base_url.geturl() 
 
     pre_headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:97.0) Gecko/20100101 Firefox/97.0',
+        'User -Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:97.0) Gecko/20100101 Firefox/97.0',
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
         'Accept-Language': 'en-US,en;q=0.5',
         'Connection': 'keep-alive',
@@ -24,15 +22,13 @@ class OmegaScansClient(MangaClient):
 
     def mangas_from_page(self, page: bytes):
         bs = BeautifulSoup(page, "html.parser")
-
-        # Main manga grid container
         manga_grid = bs.find("div", {"class": "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5"})
         if not manga_grid:
             return []
 
         manga_cards = manga_grid.find_all("div", {"class": "border border-primary-100/20"})
-        
         mangas = []
+        
         for card in manga_cards:
             try:
                 link_tag = card.find("a", {"class": "text-white"})
@@ -40,46 +36,43 @@ class OmegaScansClient(MangaClient):
                 url = link_tag.get("href")
                 img = card.find("img")
                 image = img.get("src") if img else ""
-                
+
                 mangas.append(MangaCard(self, name, url, image))
-            except:
+            except Exception as e:
+                print(f"Error parsing manga card: {e}")
                 continue
 
         return mangas
 
     def chapters_from_page(self, page: bytes, manga: MangaCard = None):
         bs = BeautifulSoup(page, "html.parser")
-
-        # Chapter list container
         chapter_list = bs.find("div", {"class": "border-t border-t-primary-100/20"})
         if not chapter_list:
             return []
 
         chapters = []
         chapter_items = chapter_list.find_all("a", {"class": "block"})
-        
+
         for item in chapter_items:
             try:
                 chapter_title = item.find("p", {"class": "text-lg"}).text.strip()
                 chapter_url = item.get("href")
                 chapters.append(MangaChapter(self, chapter_title, chapter_url, manga, []))
-            except:
+            except Exception as e:
+                print(f"Error parsing chapter: {e}")
                 continue
 
         return chapters
 
     async def pictures_from_chapters(self, content: bytes, response=None):
         bs = BeautifulSoup(content, "html.parser")
-        
-        # Reader container
         reader = bs.find("div", {"class": "max-w-5xl mx-auto"})
         if not reader:
             return []
 
-        # Get all images from reader
         images = reader.find_all("img", {"class": "chapter-img"})
         images_url = []
-        
+
         for img in images:
             src = img.get("data-src") or img.get("src")
             if src:
@@ -89,12 +82,7 @@ class OmegaScansClient(MangaClient):
 
     async def search(self, query: str = "", page: int = 1) -> List[MangaCard]:
         query = quote_plus(query)
-        
-        if query:
-            request_url = f"{self.search_url}?keyword={query}"
-        else:
-            request_url = self.base_url.geturl()
-
+        request_url = f"{self.search_url}?keyword={query}" if query else self.base_url.geturl()
         content = await self.get_url(request_url)
         return self.mangas_from_page(content)
 
@@ -106,7 +94,7 @@ class OmegaScansClient(MangaClient):
     async def iter_chapters(self, manga_url: str, manga_name) -> AsyncIterable[MangaChapter]:
         manga_card = MangaCard(self, manga_name, manga_url, '')
         content = await self.get_url(manga_url)
-        
+
         for chapter in self.chapters_from_page(content, manga_card):
             yield chapter
 
@@ -115,9 +103,7 @@ class OmegaScansClient(MangaClient):
 
     async def updates_from_page(self, content):
         bs = BeautifulSoup(content, "html.parser")
-        
-        # Latest releases section
-        latest_grid = bs.find("div", {"class": "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5"})
+ latest_grid = bs.find("div", {"class": "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5"})
         if not latest_grid:
             return {}
 
@@ -129,17 +115,17 @@ class OmegaScansClient(MangaClient):
                 manga_link = item.find("a", {"class": "text-white"})
                 if not manga_link:
                     continue
-                    
+
                 manga_url = manga_link.get("href")
                 if manga_url in urls:
                     continue
 
-                # Get latest chapter link
                 chapter_link = item.find("a", {"class": "text-primary-300"})
                 if chapter_link:
                     chapter_url = chapter_link.get("href")
                     urls[manga_url] = chapter_url
-            except:
+            except Exception as e:
+                print(f"Error parsing updates: {e}")
                 continue
 
         return urls
@@ -150,7 +136,7 @@ class OmegaScansClient(MangaClient):
 
         updated = []
         not_updated = []
-        
+
         for lc in last_chapters:
             if lc.url in updates:
                 if updates[lc.url] != lc.chapter_url:
