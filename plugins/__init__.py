@@ -16,4 +16,5 @@ from .likemanga import LikeMangaClient
 from .mangasee import MangaSeeClient
 from .mangadistrict import MangaDistrictClient
 from .manga18fx import Manga18fxClient
+from .manhwa18 import Manhwa18Client
 from .omegascans import OmegaScansClient
